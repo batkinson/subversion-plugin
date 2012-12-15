@@ -1219,7 +1219,7 @@ public class SubversionSCM extends SCM implements Serializable {
     }
 
     public SVNLogFilter createSVNLogFilter() {
-        return new SVNLogFilter(this, getExcludedRegionsPatterns(), getIncludedRegionsPatterns(),
+        return new DefaultSVNLogFilter(this, getExcludedRegionsPatterns(), getIncludedRegionsPatterns(),
                 getExcludedUsersNormalized(), getExcludedRevprop(), getExcludedCommitMessagesPatterns());
     }
 
