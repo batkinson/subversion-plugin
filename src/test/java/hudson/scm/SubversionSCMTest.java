@@ -248,7 +248,7 @@ public class SubversionSCMTest extends AbstractSubversionTest {
      */
     public void testHeadRevisionCheckout() throws Exception {
         File testRepo = new CopyExisting(getClass().getResource("two-revisions.zip")).allocate();
-        SubversionSCM scm = new SubversionSCM("file://" + testRepo.getPath() + "@HEAD");
+        SubversionSCM scm = new SubversionSCM("file://" + testRepo.toURI().toURL().getPath() + "@HEAD");
 
         FreeStyleProject p = createFreeStyleProject();
         p.setScm(scm);
@@ -719,7 +719,7 @@ public class SubversionSCMTest extends AbstractSubversionTest {
     public void testExcludedRegions() throws Exception {
 //        SLAVE_DEBUG_PORT = 8001;
         File repo = new CopyExisting(getClass().getResource("HUDSON-6030.zip")).allocate();
-        SubversionSCM scm = new SubversionSCM(ModuleLocation.parse(new String[]{"file://" + repo.getPath()},
+        SubversionSCM scm = new SubversionSCM(ModuleLocation.parse(new String[]{"file://" + repo.toURI().toURL().getPath()},
                                                                    new String[]{"."}),
                                               new UpdateUpdater(), null, ".*/bar", "", "", "", "");
 
@@ -751,7 +751,7 @@ public class SubversionSCMTest extends AbstractSubversionTest {
     public void testIncludedRegions() throws Exception {
 //        SLAVE_DEBUG_PORT = 8001;
         File repo = new CopyExisting(getClass().getResource("HUDSON-6030.zip")).allocate();
-        SubversionSCM scm = new SubversionSCM(ModuleLocation.parse(new String[]{"file://" + repo.getPath()},
+        SubversionSCM scm = new SubversionSCM(ModuleLocation.parse(new String[]{"file://" + repo.toURI().toURL().getPath()},
                                                                    new String[]{"."}),
                                               new UpdateUpdater(), null, "", "", "", "", ".*/foo");
 
@@ -832,7 +832,7 @@ public class SubversionSCMTest extends AbstractSubversionTest {
     public void testPolling() throws Exception {
 //        SLAVE_DEBUG_PORT = 8001;
         File repo = new CopyExisting(getClass().getResource("two-revisions.zip")).allocate();
-        SubversionSCM scm = new SubversionSCM("file://" + repo.getPath());
+        SubversionSCM scm = new SubversionSCM("file://" + repo.toURI().toURL().getPath());
 
         FreeStyleProject p = createFreeStyleProject();
         p.setScm(scm);
@@ -874,7 +874,7 @@ public class SubversionSCMTest extends AbstractSubversionTest {
 
     public void testMasterPolling() throws Exception {
         File repo = new CopyExisting(getClass().getResource("two-revisions.zip")).allocate();
-        SubversionSCM scm = new SubversionSCM("file://" + repo.getPath());
+        SubversionSCM scm = new SubversionSCM("file://" + repo.toURI().toURL().getPath());
         SubversionSCM.POLL_FROM_MASTER = true;
 
         FreeStyleProject p = createFreeStyleProject();
