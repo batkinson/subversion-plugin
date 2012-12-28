@@ -106,11 +106,6 @@ public class DefaultSVNLogFilter implements SVNLogFilter {
                 }
             }
             if (!contentChanged) {
-                if (log != null) {
-                    log.println(hudson.scm.subversion.Messages.SubversionSCM_pollChanges_ignoredRevision(
-                        logEntry.getRevision(),
-                        hudson.scm.subversion.Messages.SubversionSCM_pollChanges_ignoredRevision_onlydirprops()));
-                }
                 return false;
             }
         }
